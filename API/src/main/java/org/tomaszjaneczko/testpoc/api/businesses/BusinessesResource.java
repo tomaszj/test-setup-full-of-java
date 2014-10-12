@@ -1,7 +1,6 @@
 package org.tomaszjaneczko.testpoc.api.businesses;
 
 import com.codahale.metrics.annotation.Timed;
-import com.google.common.collect.Lists;
 
 import javax.validation.Valid;
 import javax.ws.rs.*;
@@ -42,6 +41,17 @@ public class BusinessesResource {
             return createdBusiness.get();
         } else {
             throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DELETE
+    @Path("{business_id}")
+    @Timed
+    public void deleteBusiness(@PathParam("business_id") long id) {
+        final boolean deleteSuccessful = new BusinessRepository().deleteBusiness(id);
+
+        if (!deleteSuccessful) {
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
     }
 }

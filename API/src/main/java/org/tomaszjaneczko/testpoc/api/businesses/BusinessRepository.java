@@ -27,7 +27,7 @@ class BusinessRepository {
     }
 
     public Optional<Business> createBusiness(@Valid Business business) {
-        Business createdBusiness = null;
+        Business createdBusiness;
 
         synchronized (businesses) {
             long lastId = businesses.stream()
@@ -40,5 +40,18 @@ class BusinessRepository {
         }
 
         return Optional.of(createdBusiness);
+    }
+
+    public boolean deleteBusiness(long id) {
+        synchronized (businesses) {
+            final Optional<Business> business = findBusiness(id);
+
+            if (business.isPresent()) {
+                businesses.remove(business.get());
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 }
