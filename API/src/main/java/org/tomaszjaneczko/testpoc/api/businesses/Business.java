@@ -27,4 +27,8 @@ public class Business {
     public String getName() {
         return name;
     }
+
+    public Business copyWithNewId(long newId) {
+        return new Business(newId, name);
+    }
 }
