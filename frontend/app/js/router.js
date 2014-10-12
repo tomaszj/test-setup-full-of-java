@@ -2,11 +2,15 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
 
   $locationProvider.html5Mode(true);
 
-  $routeProvider.when('/useless-info', {
-    templateUrl: 'useless-info.html',
-    controller: 'UselessInfoController'
+  $routeProvider.when('/businesses', {
+    templateUrl: 'businesses.html',
+    controller: 'BusinessesController'
   });
 
-  $routeProvider.otherwise({ redirectTo: '/useless-info' });
+  $routeProvider.when('/businesses/:id', {
+    templateUrl: 'business.html',
+    controller: 'BusinessController'
+  });
 
+  $routeProvider.otherwise({ redirectTo: '/businesses' });
 });
