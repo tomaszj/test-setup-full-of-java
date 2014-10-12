@@ -1,5 +1,8 @@
 <h2 class="business-id">Business #{{ data.business.id }}</h2>  
 <p>Name: {{ data.business.name }}</p>  
 
-<p><a href="/businesses">Back</a></p>
+<p>
+  <a href="/businesses" class="btn btn-default">Back</a>
+  <a href="" class="business-delete-button btn btn-danger" ng-click="deleteBusiness()">Delete</a>
+</p>
 

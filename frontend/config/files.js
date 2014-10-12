@@ -21,13 +21,18 @@ module.exports = function(lineman) {
       ]
     },
 
+    css: {
+      vendor: [
+        "vendor/bower/bootstrap/dist/css/bootstrap.min.css",
+        "vendor/bower/bootstrap/dist/css/bootstrap-theme.min.css",
+        "vendor/css/**/*.css",
+      ]
+    },
+
     less: {
       compile: {
         options: {
           paths: [
-            "vendor/bower/bootstrap/dist/css/bootstrap.min.css",
-            "vendor/bower/bootstrap/dist/css/bootstrap-theme.min.css",
-            "vendor/css/**/*.css",
             "app/css/**/*.less"
           ]
         }

@@ -1,3 +1,5 @@
+<flash-messages></flash-messages>
+
 <h2>Businesses</h2>
 <table class="table">
   <thead>
@@ -11,4 +13,13 @@
   </tr>
   </tbody>
 </table>
+
+<h2>Add a new business</h2>
+<form role="form"> 
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="business-name-field form-control" ng-model="data.newBusiness.name" />
+  </div>
+  <a href="" class="business-add-button btn btn-default" ng-click="createBusiness()">Submit</a>
+</form>
 
