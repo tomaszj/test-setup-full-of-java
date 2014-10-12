@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class Business {
-    private long id;
+    private Long id;
 
     @NotEmpty
     private String name;
@@ -13,13 +13,13 @@ public class Business {
         // Jackson
     }
 
-    public Business(long id, String name) {
+    public Business(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
     @JsonProperty
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
