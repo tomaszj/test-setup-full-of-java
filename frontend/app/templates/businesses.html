@@ -1,17 +1,14 @@
-<div id="login" class="row">
-  <div class="large-6 large-offset-3">
-    <h2>Businesses</h2>
-    <table>
-      <thead>
-        <th>Name</th>
-        <th>Actions</th>
-      </thead>
-      <tbody>
-        <tr ng-repeat="business in data.businesses">
-           <td>{{ business.name}}</td>  
-           <td><a href="/businesses/{{ business.id }}">Show</a></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+<h2>Businesses</h2>
+<table class="table">
+  <thead>
+    <th>Name</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+  <tr ng-repeat="business in data.businesses">
+    <td class="business-name">{{ business.name }}</td>  
+    <td><a class="business-show-link" href="/businesses/{{ business.id }}">Show</a></td>
+  </tr>
+  </tbody>
+</table>
+

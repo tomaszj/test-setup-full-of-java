@@ -10,6 +10,8 @@ module.exports = function(lineman) {
   return {
     js: {
       vendor: [
+        "vendor/bower/jquery/dist/jquery.min.js",
+        "vendor/bower/bootstrap/dist/js/bootstrap.js",
         "vendor/js/angular.js",
         "vendor/js/**/*.js"
       ],
@@ -22,7 +24,12 @@ module.exports = function(lineman) {
     less: {
       compile: {
         options: {
-          paths: ["vendor/css/normalize.css", "vendor/css/**/*.css", "app/css/**/*.less"]
+          paths: [
+            "vendor/bower/bootstrap/dist/css/bootstrap.min.css",
+            "vendor/bower/bootstrap/dist/css/bootstrap-theme.min.css",
+            "vendor/css/**/*.css",
+            "app/css/**/*.less"
+          ]
         }
       }
     }
