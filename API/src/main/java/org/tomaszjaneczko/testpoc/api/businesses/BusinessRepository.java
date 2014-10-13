@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
-class BusinessRepository {
+public class BusinessRepository {
     private static final List<Business> businesses;
 
     static {

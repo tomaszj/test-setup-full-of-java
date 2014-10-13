@@ -11,19 +11,28 @@ import java.util.Optional;
 @Path("/api/businesses")
 public class BusinessesResource {
 
+    final BusinessRepository repository;
+
+    public BusinessesResource() {
+        repository = new BusinessRepository();
+    }
+
+    public BusinessesResource(BusinessRepository repo) {
+        repository = repo;
+    }
+
     @GET
     @Timed
     public List<Business> getBusinesses() {
-        return new BusinessRepository().allBusinesses();
+        return repository.allBusinesses();
     }
 
     @GET
     @Path("{business_id}")
     @Timed
-    public Business getBusiness(@PathParam("business_id") String pathBusinessId) {
-        long businessId = Long.valueOf(pathBusinessId);
+    public Business getBusiness(@PathParam("business_id") long businessId) {
 
-        Optional<Business> business = new BusinessRepository().findBusiness(businessId);
+        Optional<Business> business = repository.findBusiness(businessId);
 
         if (business.isPresent()) {
             return business.get();
@@ -35,7 +44,7 @@ public class BusinessesResource {
     @POST
     @Timed
     public Business createBusiness(@Valid Business business) {
-        final Optional<Business> createdBusiness = new BusinessRepository().createBusiness(business);
+        final Optional<Business> createdBusiness = repository.createBusiness(business);
 
         if (createdBusiness.isPresent()) {
             return createdBusiness.get();
@@ -48,7 +57,7 @@ public class BusinessesResource {
     @Path("{business_id}")
     @Timed
     public void deleteBusiness(@PathParam("business_id") long id) {
-        final boolean deleteSuccessful = new BusinessRepository().deleteBusiness(id);
+        final boolean deleteSuccessful = repository.deleteBusiness(id);
 
         if (!deleteSuccessful) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);

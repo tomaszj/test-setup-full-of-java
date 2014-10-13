@@ -4,12 +4,11 @@ version := "1.0"
 
 libraryDependencies += "io.dropwizard" % "dropwizard-core" % "0.7.1"
 
-libraryDependencies += "io.dropwizard" % "dropwizard-testing" % "0.7.1" % Test
-
-libraryDependencies += "io.dropwizard" % "dropwizard-client" % "0.7.1" % Test
-
-libraryDependencies += "org.hamcrest" % "hamcrest-all" % "1.3" % Test
-
+libraryDependencies ++= Seq(
+  "io.dropwizard" % "dropwizard-testing" % "0.7.1" % Test,
+  "io.dropwizard" % "dropwizard-client" % "0.7.1" % Test,
+  "org.hamcrest" % "hamcrest-all" % "1.3" % Test,
+  "org.mockito" % "mockito-core" % "1.10.8" % Test
+)
 
 mainClass in Compile := Some("org.tomaszjaneczko.testpoc.api.TestAPIApplication")
-

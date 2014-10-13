@@ -31,4 +31,24 @@ public class Business {
     public Business copyWithNewId(long newId) {
         return new Business(newId, name);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Business business = (Business) o;
+
+        if (id != null ? !id.equals(business.id) : business.id != null) return false;
+        if (!name.equals(business.name)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + name.hashCode();
+        return result;
+    }
 }
