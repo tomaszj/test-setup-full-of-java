@@ -6,9 +6,9 @@ The aim of this proof-of-concept is how to build complex apps, where acceptance 
 
 # What's involved
 
-* frontend application based on AngularJS and [LinemanJS](http://linemanjs.com/) with Angular template
-* API built using DropWizard and Java
-* Suite of acceptance Selenium tests that would be derived from potential User Stories and defects
+* Frontend application based on AngularJS and [LinemanJS](http://linemanjs.com/) with Angular template.
+* Suite of acceptance Selenium tests that would be derived from potential User Stories and defects. Based on JUnit.
+* API built using DropWizard and Java. Contains API integration tests based on JUnit.
 
 # License
 
