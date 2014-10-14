@@ -1,7 +1,6 @@
 package org.tomaszjaneczko.testpoc.selenium_tests;
 
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -13,8 +12,7 @@ public class BusinessesTests extends BaseTest {
     public void itShouldReturnBusinesses() {
         webDriver.get(baseUrl + "/businesses");
 
-        WebElement element = webDriver.findElement(By.className("business-name"));
-        String businessNameInTable = element.getText();
+        String businessNameInTable = findElementByClassName("business-name").getText();
 
         assertThat("Business Name contains Business 1",
                 businessNameInTable.contentEquals("Business 1"), is(true));
@@ -24,11 +22,9 @@ public class BusinessesTests extends BaseTest {
     public void itShouldOpenBusiness() {
         webDriver.get(baseUrl + "/businesses");
 
-        WebElement element = webDriver.findElement(By.className("business-show-link"));
-        element.click();
+        findElementByClassName("business-show-link").click();
 
-        final WebElement businessId = webDriver.findElement(By.className("business-id"));
-        String fullBusinessId = businessId.getText();
+        String fullBusinessId = findElementByClassName("business-id").getText();
         assertThat("Business Id contains correct ID", fullBusinessId.contains("#1"), is(true));
     }
 
@@ -36,13 +32,10 @@ public class BusinessesTests extends BaseTest {
     public void itShouldAddBusiness() {
         webDriver.get(baseUrl + "/businesses");
 
-        WebElement nameElement = webDriver.findElement(By.className("business-name-field"));
-        nameElement.sendKeys("New name");
+        findElementByClassName("business-name-field").sendKeys("New name");
+        findElementByClassName("business-add-button").click();
 
-        WebElement submitElement = webDriver.findElement(By.className("business-add-button"));
-        submitElement.click();
-
-        WebElement alertElement = webDriver.findElement(By.className("alert"));
+        WebElement alertElement = findElementByClassName("alert");
         assertThat("Business Id contains correct ID",
                 alertElement.getText().contains("Business added successfully"), is(true));
 
@@ -50,12 +43,11 @@ public class BusinessesTests extends BaseTest {
 
     @Test
     public void itShouldRemoveBusiness() {
-        webDriver.get(baseUrl + "/businesses/2");
+        webDriver.get(baseUrl + "/businesses/3");
 
-        WebElement deleteElement = webDriver.findElement(By.className("business-delete-button"));
-        deleteElement.click();
+        findElementByClassName("business-delete-button").click();
 
-        WebElement alertElement = webDriver.findElement(By.className("alert"));
+        WebElement alertElement = findElementByClassName("alert");
         assertThat("Business removed message present",
                 alertElement.getText().contains("removed"), is(true));
     }

@@ -2,12 +2,16 @@ package org.tomaszjaneczko.testpoc.selenium_tests;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 
-/**
- * Created by tomaszj on 12.10.2014.
- */
+import java.util.concurrent.TimeUnit;
+
 public class BaseTest {
     protected static String baseUrl;
     protected static WebDriver webDriver;
@@ -21,5 +25,14 @@ public class BaseTest {
     @AfterClass
     public static void tearDown() {
         webDriver.quit();
+    }
+
+    public WebElement findElementByClassName(String className) {
+        Wait<WebDriver> wait = new FluentWait<>(webDriver)
+                .withTimeout(5, TimeUnit.SECONDS)
+                .pollingEvery(500, TimeUnit.MILLISECONDS)
+                .ignoring(NoSuchElementException.class);
+
+        return wait.until(d -> d.findElement(By.className(className)));
     }
 }
