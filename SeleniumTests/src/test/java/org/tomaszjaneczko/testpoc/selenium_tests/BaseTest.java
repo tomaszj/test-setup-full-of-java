@@ -27,12 +27,12 @@ public class BaseTest {
         webDriver.quit();
     }
 
-    public WebElement findElementByClassName(String className) {
+    public WebElement findElementByLocator(By locator) {
         Wait<WebDriver> wait = new FluentWait<>(webDriver)
                 .withTimeout(5, TimeUnit.SECONDS)
                 .pollingEvery(500, TimeUnit.MILLISECONDS)
                 .ignoring(NoSuchElementException.class);
 
-        return wait.until(d -> d.findElement(By.className(className)));
+        return wait.until(d -> d.findElement(locator));
     }
 }
