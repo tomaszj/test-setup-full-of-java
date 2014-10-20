@@ -7,7 +7,7 @@
     <th>Actions</th>
   </thead>
   <tbody>
-  <tr ng-repeat="business in data.businesses | orderBy:'name'">
+  <tr ng-repeat="business in data.businesses | orderBy:'name'" class="business-row">
     <td class="business-name">{{ business.name }}</td>  
     <td><a class="business-show-link" href="/businesses/{{ business.id }}">Show</a></td>
   </tr>
@@ -15,9 +15,10 @@
 </table>
 
 <h2>Add a new business</h2>
+<div class="alert alert-danger" ng-if="data.alreadyExistsMessageVisible">Business with this name already exists.</div>
 <form role="form"> 
-  <div class="form-group">
-    <label for="name">Name</label>
+  <div class="form-group" ng-class="{'has-error': data.alreadyExistsMessageVisible}">
+    <label class="control-label" for="name">Name</label>
     <input type="text" class="business-name-field form-control" ng-model="data.newBusiness.name" />
   </div>
   <a href="" class="business-add-button btn btn-default" ng-click="createBusiness()">Submit</a>

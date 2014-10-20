@@ -17,9 +17,19 @@ angular.module("appDev", ["app", "ngMockE2E"]).run(function($httpBackend) {
     }
   ]);
 
-  b.whenPOST("/api/businesses").respond({
-    id: 3,
-    name: "Business 3"
+  b.whenPOST("/api/businesses").respond(function(method, url, data) {
+    data = JSON.parse(data);
+
+    var correctResponse = {
+      id: 3,
+      name: "Business 3"
+    };
+
+    if (data.name === "Exists") {
+      return ['409', ""];
+    } else {
+      return ['200', correctResponse]; 
+    }
   });
 
   b.whenGET("/api/businesses/1").respond({

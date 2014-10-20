@@ -2,7 +2,8 @@
 angular.module("app").controller("BusinessesController", function ($scope, $http, FlashService) {
   $scope.data = {
     businesses: [],
-    newBusiness: {}
+    newBusiness: {},
+    alreadyExistsMessageVisible: false
   };
 
   $scope.getBusinesses = function() {
@@ -14,6 +15,8 @@ angular.module("app").controller("BusinessesController", function ($scope, $http
   $scope.createBusiness = function() {
     var newName = $scope.data.newBusiness.name;
 
+    $scope.data.alreadyExistsMessageVisible = false;
+
     if (newName.length > 0) {
       $http.post("/api/businesses", {
         name: newName
@@ -21,6 +24,10 @@ angular.module("app").controller("BusinessesController", function ($scope, $http
         $scope.data.newBusiness.name = "";
         FlashService.addCurrentMessage("Business added successfully.");
         $scope.getBusinesses();
+      }).error(function(data, status) {
+        if (status === 409) {
+          $scope.data.alreadyExistsMessageVisible = true;
+        }  
       }); 
     }
   };
