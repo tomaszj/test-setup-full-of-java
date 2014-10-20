@@ -23,6 +23,9 @@ packageArchetype.java_server
 // Adding assemblySettings to activate sbt-assembly.
 assemblySettings
 
+// Skip tests in assembly step
+test in assembly := {}
+
 // Final jar name.
 jarName in assembly := "test-api.jar"
 
