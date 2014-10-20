@@ -10,6 +10,10 @@ angular.module("appDev", ["app", "ngMockE2E"]).run(function($httpBackend) {
     {
       id: 2,
       name: "Business 2"
+    },
+    {
+      id: 2,
+      name: "A business added last"
     }
   ]);
 

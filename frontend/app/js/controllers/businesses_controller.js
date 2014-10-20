@@ -18,6 +18,7 @@ angular.module("app").controller("BusinessesController", function ($scope, $http
       $http.post("/api/businesses", {
         name: newName
       }).success(function(data) {
+        $scope.data.newBusiness.name = "";
         FlashService.addCurrentMessage("Business added successfully.");
         $scope.getBusinesses();
       }); 
