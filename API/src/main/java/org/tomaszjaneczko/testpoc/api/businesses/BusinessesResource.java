@@ -8,7 +8,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.Optional;
 
-@Path("/api/businesses")
+@Path("/businesses")
 public class BusinessesResource {
 
     final BusinessRepository repository;
