@@ -49,7 +49,7 @@ public class BusinessesResource {
         if (createdBusiness.isPresent()) {
             return createdBusiness.get();
         } else {
-            throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
+            throw new WebApplicationException(Response.Status.CONFLICT);
         }
     }
 

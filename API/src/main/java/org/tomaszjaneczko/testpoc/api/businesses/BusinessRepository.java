@@ -30,6 +30,14 @@ public class BusinessRepository {
         Business createdBusiness;
 
         synchronized (businesses) {
+
+            final boolean nameExists = businesses.stream()
+                    .anyMatch(b -> business.getName().equals(b.getName()));
+
+            if (nameExists) {
+                return Optional.empty();
+            }
+
             long lastId = businesses.stream()
                     .max(Comparator.comparing(Business::getId)).get().getId();
 

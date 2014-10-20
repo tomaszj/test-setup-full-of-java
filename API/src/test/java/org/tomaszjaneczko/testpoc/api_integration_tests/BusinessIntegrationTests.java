@@ -52,6 +52,21 @@ public class BusinessIntegrationTests {
     }
 
     @Test
+    public void testIfBusinessIsNotCreatedWhenNameIsNotUnique() {
+        Business newBusiness = new Business(null, "TestDuplicationBusiness");
+
+        final ClientResponse response = getBusinessesClient()
+                .post(ClientResponse.class, newBusiness);
+
+        assertThat("Response is successful", response.getStatus(), is(200));
+
+        final ClientResponse secondResponse = getBusinessesClient()
+                .post(ClientResponse.class, newBusiness);
+
+        assertThat("Response is unsuccessful", secondResponse.getStatus(), is(Responses.CONFLICT));
+    }
+
+    @Test
     public void testIfRemovesBusinesses() {
         final ClientResponse response = createTestBusiness();
         final int countBeforeDelete = getCurrentListCount();
